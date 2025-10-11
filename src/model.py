@@ -9,5 +9,5 @@ def train_model(model, data, target):
     return model.fit(data, target)
 
 def predict(model, data):
-    predicted = model.predict(test.data)
+    predicted = model.predict(data)
     return predicted
