@@ -3,10 +3,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 def create_model():
-    pass
+    return make_pipeline(TfidfVectorizer(), MultinomialNB())
 
 def train_model(model, data, target):
-    pass
+    return model.fit(train.data, train.target)
 
 def predict(model, data):
-    pass
+    predicted = model.predict(test.data)
+    return predicted
