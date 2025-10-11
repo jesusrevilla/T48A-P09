@@ -13,6 +13,4 @@ def train_model(model, data, target):
     return model
 
 def predict(model, data):
-    #Se usa el modelo entrenado para predecir
-    predictions = model.predict(data)
-    return predictions
+     return model.predict(data)
