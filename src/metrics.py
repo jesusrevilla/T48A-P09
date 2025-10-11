@@ -6,8 +6,4 @@ def evaluate_metrics(y_true, y_pred, average='macro'):
     recall = recall_score(y_true, y_pred, average=average)
     f1 = f1_score(y_true, y_pred, average=average)
     
-    return {
-        'precision': precision,
-        'recall': recall,
-        'f1_score': f1
-    }
+    return (precision,recall,f1)
