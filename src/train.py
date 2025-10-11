@@ -1,22 +1,20 @@
 from sklearn.datasets import fetch_20newsgroups
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.pipeline import make_pipeline
 from sklearn import metrics
+from model_functions import create_model, train_model, predict, evaluate_metrics  # si las tienes en otro archivo
 
-# Cargar datos
 categories = ['alt.atheism', 'comp.graphics', 'sci.space']
 train = fetch_20newsgroups(subset='train', categories=categories)
 test = fetch_20newsgroups(subset='test', categories=categories)
 
-# Crear pipeline
-model = make_pipeline(TfidfVectorizer(), MultinomialNB())
+model = create_model()
+model = train_model(model, train.data, train.target)
 
-# Entrenar
-model.fit(train.data, train.target)
+predicted = predict(model, test.data)
 
-# Predecir
-predicted = model.predict(test.data)
+results = evaluate_metrics(test.target, predicted, average='macro')
+print("\n📊 Resultados del modelo:")
+for metric, value in results.items():
+    print(f"{metric.capitalize()}: {value:.4f}")
 
-# Evaluar
+print("\n📋 Reporte de clasificación completo:")
 print(metrics.classification_report(test.target, predicted, target_names=test.target_names))
