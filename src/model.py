@@ -6,7 +6,7 @@ def create_model():
     return make_pipeline(TfidfVectorizer(), MultinomialNB())
 
 def train_model(model, data, target):
-    return model.fit(train.data, train.target)
+    return model.fit(data, target)
 
 def predict(model, data):
     predicted = model.predict(test.data)
