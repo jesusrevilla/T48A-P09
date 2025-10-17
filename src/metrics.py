@@ -13,5 +13,6 @@ def evaluate_metrics(y_true, y_pred, average='macro'):
         'recall': recall,
         'f1_score': f1
     }
+    
     return metrics_dict
 
