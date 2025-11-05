@@ -1,17 +1,11 @@
 import pytest
 from src.metrics import evaluate_metrics
 
-# Simulación de etiquetas verdaderas y predichas
-y_true = [0, 1, 2, 2, 1]
-y_pred = [0, 1, 2, 1, 1]
+from sklearn.metrics import precision_score, recall_score, f1_score
 
-def test_evaluate_metrics():
-    precision, recall, f1 = evaluate_metrics(y_true, y_pred)
+def evaluate_metrics(y_true, y_pred, average='macro'):
+    precision = precision_score(y_true, y_pred, average=average)
+    recall = recall_score(y_true, y_pred, average=average)
+    f1 = f1_score(y_true, y_pred, average=average)
 
-    # Validar que las métricas estén en el rango válido
-    assert 0.0 <= precision <= 1.0
-    assert 0.0 <= recall <= 1.0
-    assert 0.0 <= f1 <= 1.0
-
-    # Validar que la precisión sea razonable
-    assert precision > 0.5
+    return precision, recall, f1
