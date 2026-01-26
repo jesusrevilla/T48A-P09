@@ -20,3 +20,4 @@ predicted = model.predict(test.data)
 
 # Evaluar
 print(metrics.classification_report(test.target, predicted, target_names=test.target_names))
+ 
